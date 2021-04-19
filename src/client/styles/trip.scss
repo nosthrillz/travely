@@ -1,0 +1,251 @@
+@import "variables";
+@import "mixins";
+
+.subtitle {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+section {
+    * {
+        border: 1px solid rgba(255,0,0,0.5);
+        margin: 5px;
+    }
+    & > div {
+        width: 100%;
+    }
+
+    width: 80%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: $bkg-darkest 0 0 10px 10px;
+    background: $bkg-dark;
+
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+
+    .hero-container {
+        .hero-img {
+            max-height: 300px;
+            max-width: calc(100% - 10px);
+        }
+    }
+
+    .trip-head-container {
+        background: $bkg-darkest;
+        @include centerFlex;
+        flex-direction: column;
+        h1 {
+            font-size: 2em;
+        }
+        h2 {
+            font-size: 1em;
+        }
+        h3 {
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    }
+
+    .weather-container {
+        background: $bkg-darkest;
+        @include centerFlex;
+        flex-direction: column;
+
+        .weather-img {
+            width: 30%;
+        }
+
+        .weather-status {
+            font-style: italic;
+        }
+
+        .weather-temp-container {
+            @include centerFlex;
+            width: 100%;
+
+            .weather-temp-high {
+                @include centerFlex;
+                width: 50%;
+                justify-content: flex-start;
+                color: green;
+            }
+
+            .weather-temp-low {
+                @include centerFlex;
+                width: 50%;
+                justify-content: flex-end;
+                color: cyan;
+            }
+
+            .weather-temp {
+                font-size: 1.3em;
+                font-weight: bold;
+                color: $text-light;
+            }
+        }
+    } 
+}
+
+.flights-container {
+    background: $bkg-darkest;
+}
+
+#flights {
+    @include centerFlex;
+    flex-direction: column;
+}
+
+.dep-flight-details, .arr-flight-details {
+    * { margin: 0; padding: 0; }
+
+    display: grid;
+    grid-template-columns: 30px repeat(2, minmax(10px, 1fr)) 30px;
+    grid-template-rows:
+    [date]      30px
+    [airTime]   30px
+    ;
+    grid-template-areas:
+    "dateL  dateL   dateR   dateR"
+    "imgL   airL    airR    imgR"
+    "imgL   timeL   timeR   imgR"
+    ;
+    grid-gap: 5px;
+
+}
+
+// departure flights
+#dep-date-dep {
+    grid-area: dateL;
+}
+
+#dep-img-dep {
+    grid-area: imgL;
+    @include flightImg;
+}
+
+#dep-air-dep {
+    grid-area: airL;
+}
+
+#dep-time-dep {
+    grid-area: timeL;
+}
+
+#dep-date-arr {
+    grid-area: dateR;
+}
+
+#dep-img-arr {
+    grid-area: imgR;
+    @include flightImg;
+}
+
+#dep-air-arr {
+    grid-area: airR;
+}
+
+#dep-time-arr {
+    grid-area: timeR;
+}
+
+// arrival flights
+#arr-date-dep {
+    grid-area: dateL;
+}
+
+#arr-img-dep {
+    grid-area: imgL;
+    @include flightImg;
+}
+
+#arr-air-dep {
+    grid-area: airL;
+}
+
+#arr-time-dep {
+    grid-area: timeL;
+}
+
+#arr-date-arr {
+    grid-area: dateR;
+}
+
+#arr-img-arr {
+    grid-area: imgR;
+    @include flightImg;
+}
+
+#arr-air-arr {
+    grid-area: airR;
+}
+
+#arr-time-arr {
+    grid-area: timeR;
+}
+
+#saveFlight {
+    @include submitBtn;
+}
+
+
+.restaurants-container {
+    background: $bkg-darkest;
+}
+
+#restaurants {
+    @include centerFlex;
+    flex-direction: column;
+}
+
+#saveRestaurant {
+    @include submitBtn;
+}
+
+.restaurants-list {
+    background: $bkg-dark;
+    @include centerFlex;
+    flex-direction: column;
+    
+    li {
+        p:nth-child(1) {
+            font-size: 0.8em;
+        }
+        p:nth-child(2) {
+            font-size: 0.6em;
+        }
+    }
+}
+
+
+.hotels-container {
+    background: $bkg-darkest;
+}
+
+#hotels {
+    @include centerFlex;
+    flex-direction: column;
+}
+
+#saveHotel {
+    @include submitBtn;
+}
+
+.hotels-list {
+    background: $bkg-dark;
+    @include centerFlex;
+    flex-direction: column;
+
+    li {
+        p:nth-child(1) {
+            font-size: 0.8em;
+        }
+        p:nth-child(2) {
+            font-size: 0.6em;
+        }
+    }
+}

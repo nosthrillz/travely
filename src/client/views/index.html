@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <link rel="icon" href="" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Trippy</h1>
+    </header>
+
+    <main>
+      <form id="add">
+        <input id="where" type="text" placeholder="Where to?" />
+        <input id="day" type="text" placeholder="Day" />
+        <input id="month" type="text" placeholder="Month" />
+        <input id="year" type="text" placeholder="Year" />
+        <input type="submit" value="Add upcoming trip" />
+      </form>
+
+      <section>
+
+          <div class="hero-container">
+            <img class="hero-img" src="https://recruit4languages.com/app/uploads/2020/05/Paris.jpg" alt="" />
+          </div>
+          <div class="trip-head-container">
+            <h1>Location</h1>
+            <h2>DD/MM/YYYY</h2>
+            <h3>x days until your trip</h3>
+          </div>
+
+          <div class="weather-container">
+            <p class="subtitle">Weather</p>
+            <img class="weather-img" src="https://i.pinimg.com/originals/53/22/c2/5322c2cad533e12e552d0dfdc89b4c25.png" alt="" />
+            <p class="weather-status">Sunny</p>
+            <div class="weather-temp-container">
+              <div class="weather-temp-high">
+                <p class="weather-temp">16</p>
+                <p class="weather-temp-label">Hi</p>
+              </div>
+              <div class="weather-temp-low">
+                <p class="weather-temp">12</p>
+                <p class="weather-temp-label">Lo</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flights-container">
+            <h2 class="subtitle">Flights</h2>
+            <form action="" id="flights">
+              <h3 class="flight-subtitle">Departure</h3>
+              <div class="dep-flight-details">
+                <input id="dep-date-dep" type="text" placeholder="DD/MM/YYYY">
+                <img id="dep-img-dep" src="../images/flight_takeoff.png" alt="" />
+                <input id="dep-air-dep" type="text" placeholder="Departure airport">
+                <input id="dep-time-dep" type="text" placeholder="HH:MM">
+                
+                <input id="dep-date-arr" type="text" placeholder="DD/MM/YYYY">
+                <img id="dep-img-arr" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/plane-landing-1-501376.png" alt="" />
+                <input id="dep-air-arr" type="text" placeholder="Arrival airport">
+                <input id="dep-time-arr" type="text" placeholder="HH:MM">
+              </div>
+              <h3 class="flight-subtitle">Return</h3>
+              <div class="arr-flight-details">
+                <input id="arr-date-dep" type="text" placeholder="DD/MM/YYYY">
+                <img id="arr-img-dep" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/plane-176-501374.png" alt="" />
+                <input id="arr-air-dep" type="text" placeholder="Departure airport">
+                <input id="arr-time-dep" type="text" placeholder="HH:MM">
+                
+                <input id="arr-date-arr" type="text" placeholder="DD/MM/YYYY">
+                <img id="arr-img-arr" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/plane-landing-1-501376.png" alt="" />
+                <input id="arr-air-arr" type="text" placeholder="Arrival airport">
+                <input id="arr-time-arr" type="text" placeholder="HH:MM">
+              </div>
+              <button id="saveFlight" type="submit">Save</button>
+            </form>
+          </div>
+
+          <div class="restaurants-container">
+            <h2 class="subtitle">Restaurants</h2>
+            <form action="" id="restaurants">
+              <input id="rest-name" type="text" placeholder="Name">
+              <input id="rest-address" type="text" placeholder="Address">
+              <button id="saveRestaurant" type="submit">Save</button>
+            </form>
+            <ul class="restaurants-list">
+                <li>
+                  <p>Rest Name 1</p>
+                  <p>Rest Address 1</p>
+                </li>
+                <li>
+                  <p>Rest Name 2</p>
+                  <p>Rest Address 2</p>
+                </li>
+            </ul>
+          </div>
+
+          <div class="hotels-container">
+            <h2 class="subtitle">Hotels</h2>
+            <form action="" id="hotels">
+              <input id="hot-name" type="text" placeholder="Name">
+              <input id="hot-address" type="text" placeholder="Address">
+              <button id="saveHotel" type="submit">Save</button>
+            </form>
+            <ul class="hotels-list">
+                <li>
+                  <p>Hotel Name 1</p>
+                  <p>Hotel Address 1</p>
+                </li>
+                <li>
+                  <p>Hotel Name 2</p>
+                  <p>Hotel Address 2</p>
+                </li>
+            </ul>
+          </div>
+
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Designed and built by
+        <a href="https://www.github.com/nosthrillz">NoSthrillZ</a>.
+      </p>
+    </footer>
+  </body>
+</html>

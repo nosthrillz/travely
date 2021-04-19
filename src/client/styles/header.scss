@@ -1,0 +1,17 @@
+@import "variables";
+@import "mixins";
+
+header {
+    @include centerFlex;
+    flex-direction: column;
+    color: $text-light;
+    background: $bkg-dark;
+    padding: 20px;
+
+    h1 {
+        font-size: 2em;
+        font-weight: bold;
+        color: $text-accent;
+    }
+
+}

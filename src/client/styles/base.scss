@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import "variables";
+@import "mixins";
+
+body {
+    // display: flex;
+    // flex-direction: column;
+    min-height: calc(100vh + 100px);
+    padding: 0;
+    margin: 0;
+    font-family: 'Open sans', sans-serif;
+    line-height: normal;
+    color: $text-light;
+    background: $bkg-mid;
+}
+
+#add {
+    margin-bottom: 50px;
+}
+
+main {
+    @include centerFlex;
+    flex-direction: column;
+    background: $bkg-mid;
+    justify-items: center;
+}
+
+a {
+    color: $accent3;
+}
+
+input {
+    @include inputs;
+    &[type=submit] {
+        background: $bkg-mid;
+        color: $bkg-light;
+    }
+}
+
+#modalOverlay {
+    z-index: 50;
+    background: rgba(0,0,50,0.7);
+    min-width: calc(100% - 0px);
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+}
