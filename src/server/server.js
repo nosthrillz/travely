@@ -21,6 +21,60 @@ app.listen(process.env.PORT, function () {
 // WEATHERBIT API   process.env.KEY_WEATHER   "748981dfce874ef783e7e9ae0c76e1da"
 // PIXABAY API      process.env.KEY_PIXABAY   "20862856-a5780ea16b7b7c9aa0237a084"
 
+// set up mock db
+trips = [];
+trips[0] = {
+  hero: "https://recruit4languages.com/app/uploads/2020/05/Paris.jpg",
+  location: "Paris",
+  date: "20/04/2021",
+  countdown: 220,
+  weather: {
+    img:
+      "https://i.pinimg.com/originals/53/22/c2/5322c2cad533e12e552d0dfdc89b4c25.png",
+    status: "Sunny",
+    high: 16,
+    low: 12,
+  },
+  flights: {
+    departure: {
+      depDate: "30/04/2021",
+      arrDate: "30/04/2021",
+      depAir: "ZRH",
+      arrAir: "OTP",
+      depTime: "08:30",
+      arrTime: "10:15",
+    },
+    return: {
+      depDate: "",
+      arrDate: "01/05/2021",
+      depAir: "",
+      arrAir: "ZRH",
+      depTime: "16:05",
+      arrTime: "17:50",
+    },
+  },
+  restaurants: [
+    {
+      name: "Linea",
+      address: "some address",
+    },
+    {
+      name: "Papila",
+      address: "other address",
+    },
+  ],
+  hotels: [
+    {
+      name: "Ramada Hotels",
+      address: "some address",
+    },
+    {
+      name: "Double Tree by Hilton",
+      address: "other address",
+    },
+  ],
+};
+
 app.get("/", function (req, res) {
   res.sendFile("dist/index.html");
 });
@@ -31,4 +85,13 @@ app.get("/test", function (req, res) {
 
 app.get("/key", function (req, res) {
   res.send(process.env.API_KEY);
+});
+
+app.get("/trips", (req, res) => {
+  res.send(trips);
+});
+
+app.post("/trips:tripid/flights", (req, res) => {
+  trips[req.params.tripid].flights = req.body;
+  res.send(trips);
 });

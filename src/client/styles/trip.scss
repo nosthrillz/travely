@@ -15,6 +15,10 @@ section {
         width: 100%;
     }
 
+    * > input[type=text] {
+        min-height: 30px;
+    }
+
     width: 80%;
     margin: 10px 0;
     padding: 10px;
@@ -27,9 +31,21 @@ section {
     justify-items: center;
     align-items: center;
 
+    @media screen and (min-width: 321px) and (max-width: 600px) {
+
+    }
+
+    @media screen and (min-width: 601px) {
+        width: 50%;
+    }
+
+
     .hero-container {
+        width: 100%;
+
         .hero-img {
-            max-height: 300px;
+            height: auto;
+            width: 100%;
             max-width: calc(100% - 10px);
         }
     }
@@ -58,6 +74,10 @@ section {
 
         .weather-img {
             width: 30%;
+
+            @media screen and (min-width: 601px) {
+                width: 10%;
+            }
         }
 
         .weather-status {
@@ -66,7 +86,11 @@ section {
 
         .weather-temp-container {
             @include centerFlex;
-            width: 100%;
+            width: 80%;
+
+            @media screen and (min-width: 601px) {
+                width: 40%;
+            }
 
             .weather-temp-high {
                 @include centerFlex;
@@ -103,6 +127,7 @@ section {
 .dep-flight-details, .arr-flight-details {
     * { margin: 0; padding: 0; }
 
+    width: 100%;
     display: grid;
     grid-template-columns: 30px repeat(2, minmax(10px, 1fr)) 30px;
     grid-template-rows:
@@ -116,6 +141,10 @@ section {
     ;
     grid-gap: 5px;
 
+    @media screen and (min-width: 601px) {
+        width: 50%;
+    }
+
 }
 
 // departure flights
@@ -128,119 +157,85 @@ section {
     @include flightImg;
 }
 
-#dep-air-dep {
-    grid-area: airL;
-}
+#dep-air-dep { grid-area: airL; }
 
-#dep-time-dep {
-    grid-area: timeL;
-}
+#dep-time-dep { grid-area: timeL; }
 
-#dep-date-arr {
-    grid-area: dateR;
-}
+#dep-date-arr { grid-area: dateR; }
 
 #dep-img-arr {
     grid-area: imgR;
     @include flightImg;
 }
 
-#dep-air-arr {
-    grid-area: airR;
-}
+#dep-air-arr { grid-area: airR; }
 
-#dep-time-arr {
-    grid-area: timeR;
-}
+#dep-time-arr { grid-area: timeR; }
 
 // arrival flights
-#arr-date-dep {
-    grid-area: dateL;
-}
+#arr-date-dep { grid-area: dateL; }
 
 #arr-img-dep {
     grid-area: imgL;
     @include flightImg;
 }
 
-#arr-air-dep {
-    grid-area: airL;
-}
+#arr-air-dep { grid-area: airL; }
 
-#arr-time-dep {
-    grid-area: timeL;
-}
+#arr-time-dep { grid-area: timeL; }
 
-#arr-date-arr {
-    grid-area: dateR;
-}
+#arr-date-arr { grid-area: dateR; }
 
 #arr-img-arr {
     grid-area: imgR;
     @include flightImg;
 }
 
-#arr-air-arr {
-    grid-area: airR;
-}
+#arr-air-arr { grid-area: airR; }
 
-#arr-time-arr {
-    grid-area: timeR;
-}
+#arr-time-arr { grid-area: timeR; }
 
 #saveFlight {
     @include submitBtn;
 }
 
 
-.restaurants-container {
+.restaurants-container, .hotels-container {
     background: $bkg-darkest;
-}
-
-#restaurants {
     @include centerFlex;
     flex-direction: column;
 }
 
-#saveRestaurant {
-    @include submitBtn;
-}
-
-.restaurants-list {
-    background: $bkg-dark;
+#restaurants, #hotels {
     @include centerFlex;
     flex-direction: column;
-    
-    li {
-        p:nth-child(1) {
-            font-size: 0.8em;
-        }
-        p:nth-child(2) {
-            font-size: 0.6em;
+    width: 100%;
+
+    * {
+        width: 100%;
+
+        @media screen and (min-width: 601px) {
+            width: 50%;
         }
     }
 }
 
-
-.hotels-container {
-    background: $bkg-darkest;
-}
-
-#hotels {
-    @include centerFlex;
-    flex-direction: column;
-}
-
-#saveHotel {
+#saveRestaurant, #saveHotel {
     @include submitBtn;
 }
 
-.hotels-list {
+#restaurants-list, #hotels-list {
     background: $bkg-dark;
     @include centerFlex;
     flex-direction: column;
+    width: 100%;
 
     li {
+        width: 100%;
+        @media screen and (min-width: 601px) {
+            width: 50%;
+        }
+
         p:nth-child(1) {
             font-size: 0.8em;
         }
