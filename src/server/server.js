@@ -21,7 +21,7 @@ app.listen(process.env.PORT, function () {
 // WEATHERBIT API   process.env.KEY_WEATHER   "748981dfce874ef783e7e9ae0c76e1da"
 // PIXABAY API      process.env.KEY_PIXABAY   "20862856-a5780ea16b7b7c9aa0237a084"
 
-// set up mock db
+// set up mock db with default entry
 trips = [];
 trips[0] = {
   hero: "https://recruit4languages.com/app/uploads/2020/05/Paris.jpg",
@@ -45,9 +45,9 @@ trips[0] = {
       arrTime: "10:15",
     },
     return: {
-      depDate: "",
+      depDate: "01/05/2021",
       arrDate: "01/05/2021",
-      depAir: "",
+      depAir: "OTP",
       arrAir: "ZRH",
       depTime: "16:05",
       arrTime: "17:50",
@@ -91,7 +91,13 @@ app.get("/trips", (req, res) => {
   res.send(trips);
 });
 
-app.post("/trips:tripid/flights", (req, res) => {
-  trips[req.params.tripid].flights = req.body;
+app.post("/trips/:tripid/flights", (req, res) => {
+  console.log("Received object: ", req.body.flights);
+  console.log("trip id:", req.params.tripid);
+
+  trips[req.params.tripid].flights = req.body.flights;
+
+  console.log("modified flights: ", trips[req.params.tripid].flights);
+
   res.send(trips);
 });

@@ -1,59 +1,6 @@
-// mock input
-trips = [];
+import { listen } from "./listeners";
 
-trips[0] = {
-  hero: "https://recruit4languages.com/app/uploads/2020/05/Paris.jpg",
-  location: "Paris",
-  date: "20/04/2021",
-  countdown: 220,
-  weather: {
-    img:
-      "https://i.pinimg.com/originals/53/22/c2/5322c2cad533e12e552d0dfdc89b4c25.png",
-    status: "Sunny",
-    high: 16,
-    low: 12,
-  },
-  flights: {
-    departure: {
-      depDate: "30/04/2021",
-      arrDate: "30/04/2021",
-      depAir: "ZRH",
-      arrAir: "OTP",
-      depTime: "08:30",
-      arrTime: "10:15",
-    },
-    return: {
-      depDate: "",
-      arrDate: "01/05/2021",
-      depAir: "",
-      arrAir: "ZRH",
-      depTime: "16:05",
-      arrTime: "17:50",
-    },
-  },
-  restaurants: [
-    {
-      name: "Linea",
-      address: "some address",
-    },
-    {
-      name: "Papila",
-      address: "other address",
-    },
-  ],
-  hotels: [
-    {
-      name: "Ramada Hotels",
-      address: "some address",
-    },
-    {
-      name: "Double Tree by Hilton",
-      address: "other address",
-    },
-  ],
-};
-
-export function createTrip(trips) {
+export function createTrips(trips) {
   const main = document.querySelector("main");
 
   for (let i = 0; i < trips.length; i++) {
@@ -303,6 +250,7 @@ export function createTrip(trips) {
     saveFlight.type = "submit";
     saveFlight.innerText = "Save";
     flightsForm.appendChild(saveFlight);
+    listen("flight", saveFlight, i);
 
     // Restaurants
 
@@ -341,7 +289,7 @@ export function createTrip(trips) {
     restaurantsList.id = "restaurants-list";
     restaurantsContainer.appendChild(restaurantsList);
 
-    for (restaurant of trips[0].restaurants) {
+    for (let restaurant of trips[0].restaurants) {
       let restItem = document.createElement("li");
       restaurantsList.appendChild(restItem);
       let restName = document.createElement("p");
@@ -389,7 +337,7 @@ export function createTrip(trips) {
     hotelsList.id = "hotels-list";
     hotelsContainer.appendChild(hotelsList);
 
-    for (hotel of trips[0].hotels) {
+    for (let hotel of trips[0].hotels) {
       let hotItem = document.createElement("li");
       hotelsList.appendChild(hotItem);
       let hotName = document.createElement("p");
