@@ -1,4 +1,5 @@
 import { listen } from "./listeners";
+import { createRestaurants, createHotels } from "./CRUDRestHotels";
 
 export function createTrips(trips) {
   const main = document.querySelector("main");
@@ -282,23 +283,15 @@ export function createTrips(trips) {
     const saveRestaurant = document.createElement("button");
     saveRestaurant.id = "saveRestaurant";
     saveRestaurant.type = "submit";
-    saveRestaurant.innerText = "Save";
+    saveRestaurant.innerText = "Add";
     restaurantsForm.appendChild(saveRestaurant);
+    listen("restaurant", saveRestaurant, i);
 
     const restaurantsList = document.createElement("ul");
     restaurantsList.id = "restaurants-list";
     restaurantsContainer.appendChild(restaurantsList);
 
-    for (let restaurant of trips[0].restaurants) {
-      let restItem = document.createElement("li");
-      restaurantsList.appendChild(restItem);
-      let restName = document.createElement("p");
-      restName.innerText = restaurant.name;
-      restItem.appendChild(restName);
-      let restAddress = document.createElement("p");
-      restAddress.innerText = restaurant.address;
-      restItem.appendChild(restAddress);
-    }
+    createRestaurants(trips[i].restaurants, restaurantsList);
 
     // Hotels
 
@@ -330,22 +323,14 @@ export function createTrips(trips) {
     const saveHotel = document.createElement("button");
     saveHotel.id = "saveHotel";
     saveHotel.type = "submit";
-    saveHotel.innerText = "Save";
+    saveHotel.innerText = "Add";
     hotelsForm.appendChild(saveHotel);
+    listen("hotel", saveHotel, i);
 
     const hotelsList = document.createElement("ul");
     hotelsList.id = "hotels-list";
     hotelsContainer.appendChild(hotelsList);
 
-    for (let hotel of trips[0].hotels) {
-      let hotItem = document.createElement("li");
-      hotelsList.appendChild(hotItem);
-      let hotName = document.createElement("p");
-      hotName.innerText = hotel.name;
-      hotItem.appendChild(hotName);
-      let hotAddress = document.createElement("p");
-      hotAddress.innerText = hotel.address;
-      hotItem.appendChild(hotAddress);
-    }
+    createHotels(trips[i].hotels, hotelsList);
   }
 }

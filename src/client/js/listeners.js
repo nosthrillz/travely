@@ -1,50 +1,114 @@
+import { createRestaurants, createHotels } from "./CRUDRestHotels";
+
 export function listen(type, btn, id) {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    if (type == "flight") {
-      const flightsElem = document
-        .querySelector(`#section-${id}`)
-        .querySelector("#flights");
+    switch (type) {
+      case "flight": {
+        const flightsElem = document
+          .querySelector(`#section-${id}`)
+          .querySelector("#flights");
 
-      const depDateDep = flightsElem.querySelector("#dep-date-dep").value;
-      const depAirDep = flightsElem.querySelector("#dep-air-dep").value;
-      const depTimeDep = flightsElem.querySelector("#dep-time-dep").value;
-      const depDateArr = flightsElem.querySelector("#dep-date-arr").value;
-      const depAirArr = flightsElem.querySelector("#dep-air-arr").value;
-      const depTimeArr = flightsElem.querySelector("#dep-time-arr").value;
+        const depDateDep = flightsElem.querySelector("#dep-date-dep").value;
+        const depAirDep = flightsElem.querySelector("#dep-air-dep").value;
+        const depTimeDep = flightsElem.querySelector("#dep-time-dep").value;
+        const depDateArr = flightsElem.querySelector("#dep-date-arr").value;
+        const depAirArr = flightsElem.querySelector("#dep-air-arr").value;
+        const depTimeArr = flightsElem.querySelector("#dep-time-arr").value;
 
-      const arrDateDep = flightsElem.querySelector("#arr-date-dep").value;
-      const arrAirDep = flightsElem.querySelector("#arr-air-dep").value;
-      const arrTimeDep = flightsElem.querySelector("#arr-time-dep").value;
-      const arrDateArr = flightsElem.querySelector("#arr-date-arr").value;
-      const arrAirArr = flightsElem.querySelector("#arr-air-arr").value;
-      const arrTimeArr = flightsElem.querySelector("#arr-time-arr").value;
+        const arrDateDep = flightsElem.querySelector("#arr-date-dep").value;
+        const arrAirDep = flightsElem.querySelector("#arr-air-dep").value;
+        const arrTimeDep = flightsElem.querySelector("#arr-time-dep").value;
+        const arrDateArr = flightsElem.querySelector("#arr-date-arr").value;
+        const arrAirArr = flightsElem.querySelector("#arr-air-arr").value;
+        const arrTimeArr = flightsElem.querySelector("#arr-time-arr").value;
 
-      let data = {};
+        let data = {};
 
-      data.flights = {
-        departure: {
-          depDate: depDateDep,
-          arrDate: depDateArr,
-          depAir: depAirDep,
-          arrAir: depAirArr,
-          depTime: depTimeDep,
-          arrTime: depTimeArr,
-        },
-        return: {
-          depDate: arrDateDep,
-          arrDate: arrDateArr,
-          depAir: arrAirDep,
-          arrAir: arrAirArr,
-          depTime: arrTimeDep,
-          arrTime: arrTimeArr,
-        },
-      };
+        data.flights = {
+          departure: {
+            depDate: depDateDep,
+            arrDate: depDateArr,
+            depAir: depAirDep,
+            arrAir: depAirArr,
+            depTime: depTimeDep,
+            arrTime: depTimeArr,
+          },
+          return: {
+            depDate: arrDateDep,
+            arrDate: arrDateArr,
+            depAir: arrAirDep,
+            arrAir: arrAirArr,
+            depTime: arrTimeDep,
+            arrTime: arrTimeArr,
+          },
+        };
 
-      const url = `http://localhost:8081/trips/${id}/flights`;
+        const url = `http://localhost:8081/trips/${id}/flights`;
 
-      postData(url, data).then(alert("Updated!"));
+        postData(url, data).then(alert("Updated!"));
+        break;
+      }
+      case "restaurant": {
+        const restaurantsElem = document
+          .querySelector(`#section-${id}`)
+          .querySelector("#restaurants");
+
+        const restName = restaurantsElem.querySelector("#rest-name").value;
+        const restAddress = restaurantsElem.querySelector("#rest-address")
+          .value;
+
+        let data = {};
+
+        data = {
+          name: restName,
+          address: restAddress,
+        };
+
+        const url = `http://localhost:8081/trips/${id}/restaurants`;
+
+        postData(url, data).then((trips) => {
+          const restaurantsList = document
+            .querySelector(`#section-${id}`)
+            .querySelector("#restaurants-list");
+
+          restaurantsList.innerHTML = ""; // safe remove because no listeners
+
+          createRestaurants(trips[id].restaurants, restaurantsList);
+        });
+
+        break;
+      }
+      case "hotel": {
+        const hotelsElem = document
+          .querySelector(`#section-${id}`)
+          .querySelector("#hotels");
+
+        const hotName = hotelsElem.querySelector("#hot-name").value;
+        const hotAddress = hotelsElem.querySelector("#hot-address").value;
+
+        let data = {};
+
+        data = {
+          name: hotName,
+          address: hotAddress,
+        };
+
+        const url = `http://localhost:8081/trips/${id}/hotels`;
+
+        postData(url, data).then((trips) => {
+          const hotelsList = document
+            .querySelector(`#section-${id}`)
+            .querySelector("#hotels-list");
+
+          hotelsList.innerHTML = ""; // safe remove because no listeners
+
+          createHotels(trips[id].hotels, hotelsList);
+        });
+
+        break;
+      }
     }
   });
 }

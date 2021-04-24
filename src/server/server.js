@@ -101,3 +101,25 @@ app.post("/trips/:tripid/flights", (req, res) => {
 
   res.send(trips);
 });
+
+app.post("/trips/:tripid/restaurants", (req, res) => {
+  console.log("Received restaurant: ", req.body);
+  console.log("trip id:", req.params.tripid);
+
+  trips[req.params.tripid].restaurants.push(req.body);
+
+  console.log("modified restaurants: ", trips[req.params.tripid].restaurants);
+
+  res.send(trips);
+});
+
+app.post("/trips/:tripid/hotels", (req, res) => {
+  console.log("Received hotel: ", req.body);
+  console.log("trip id:", req.params.tripid);
+
+  trips[req.params.tripid].hotels.push(req.body);
+
+  console.log("modified hotels: ", trips[req.params.tripid].hotels);
+
+  res.send(trips);
+});
