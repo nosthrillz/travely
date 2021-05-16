@@ -68,15 +68,20 @@ export function listen(type, btn, id) {
 
         const url = `http://localhost:8081/trips/${id}/restaurants`;
 
-        postData(url, data).then((trips) => {
-          const restaurantsList = document
-            .querySelector(`#section-${id}`)
-            .querySelector("#restaurants-list");
+        postData(url, data)
+          .then((trips) => {
+            const restaurantsList = document
+              .querySelector(`#section-${id}`)
+              .querySelector("#restaurants-list");
 
-          restaurantsList.innerHTML = ""; // safe remove because no listeners
+            restaurantsList.innerHTML = ""; // safe remove because no listeners
 
-          createRestaurants(trips[id].restaurants, restaurantsList);
-        });
+            createRestaurants(trips[id].restaurants, restaurantsList);
+          })
+          .then(() => {
+            restaurantsElem.querySelector("#rest-name").value = "";
+            restaurantsElem.querySelector("#rest-address").value = "";
+          });
 
         break;
       }
@@ -97,15 +102,20 @@ export function listen(type, btn, id) {
 
         const url = `http://localhost:8081/trips/${id}/hotels`;
 
-        postData(url, data).then((trips) => {
-          const hotelsList = document
-            .querySelector(`#section-${id}`)
-            .querySelector("#hotels-list");
+        postData(url, data)
+          .then((trips) => {
+            const hotelsList = document
+              .querySelector(`#section-${id}`)
+              .querySelector("#hotels-list");
 
-          hotelsList.innerHTML = ""; // safe remove because no listeners
+            hotelsList.innerHTML = ""; // safe remove because no listeners
 
-          createHotels(trips[id].hotels, hotelsList);
-        });
+            createHotels(trips[id].hotels, hotelsList);
+          })
+          .then(() => {
+            hotelsElem.querySelector("#hot-name").value = "";
+            hotelsElem.querySelector("#hot-address").value = "";
+          });
 
         break;
       }
@@ -125,7 +135,6 @@ const postData = async (url, data) => {
 
   try {
     const newData = await response.json();
-    console.log(newData);
     return newData;
   } catch (e) {
     console.log("Error:", e);

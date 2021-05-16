@@ -1,4 +1,5 @@
 export function createRestaurants(restaurants, restaurantsList) {
+  restaurantsList.innerHTML = "";
   for (let restaurant of restaurants) {
     let restItem = document.createElement("li");
     restaurantsList.appendChild(restItem);
@@ -12,6 +13,7 @@ export function createRestaurants(restaurants, restaurantsList) {
 }
 
 export function createHotels(hotels, hotelsList) {
+  hotelsList.innerHTML = "";
   for (let hotel of hotels) {
     let hotItem = document.createElement("li");
     hotelsList.appendChild(hotItem);

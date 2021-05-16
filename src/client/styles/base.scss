@@ -3,49 +3,73 @@
 @import "mixins";
 
 body {
-    // display: flex;
-    // flex-direction: column;
     min-height: calc(100vh + 100px);
     padding: 0;
     margin: 0;
     font-family: 'Open sans', sans-serif;
     line-height: normal;
-    color: $text-light;
-    background: $bkg-mid;
-}
-
-#add {
-    margin-bottom: 50px;
+    color: $secondary-dark;
+    background: $bkg;
 }
 
 main {
     @include centerFlex;
     flex-direction: column;
-    background: $bkg-mid;
+    background: $bkg;
     justify-items: center;
-}
+    margin-top: 20px;
+    margin-bottom: 20px;
 
-a {
-    color: $accent3;
-}
-
-input {
-    @include inputs;
-    &[type=submit] {
-        background: $bkg-mid;
-        color: $bkg-light;
+    .no-trips {
+        margin: 50px 0;
+        font-style: italic;
     }
 }
 
-#modalOverlay {
-    z-index: 50;
-    background: rgba(0,0,50,0.7);
-    min-width: calc(100% - 0px);
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
+a {
+    color: $secondary-light;
+}
+
+#addTrip {
+    @include centerFlex;
+    margin: 30px 0;
+
+    input {
+        @include inputs;
+    }
+
+    #add {
+        @include submitBtn;
+        width: 100px;
+
+    }
+    
+    @media screen and (max-width: 601px) {
+        flex-direction: column;
+    }
+}
+
+.remove-trips {
+    width: 100%;
+    @include centerFlex;
     display: none;
+
+    #removeTrips {
+        border-radius: 8px;
+        cursor: pointer;
+        background: none;
+        border: 1px solid $accent-red;
+        color: $accent-red;
+
+        &:hover {
+            border: 1px solid $accent-red;
+            background: $accent-red;
+            color: $main-lightest;
+        }
+
+        @media screen and (min-width: 601px) {
+            font-size: 1.2em;
+            height: 40px;
+        }
+    }
 }

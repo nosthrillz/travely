@@ -4,14 +4,16 @@
 header {
     @include centerFlex;
     flex-direction: column;
-    color: $text-light;
-    background: $bkg-dark;
+    background: $main-light;
     padding: 20px;
 
     h1 {
         font-size: 2em;
         font-weight: bold;
-        color: $text-accent;
+        color: $secondary-mid;
+        @media screen and (min-width: 601px) {
+            font-size: 3em;
+        }
     }
 
 }

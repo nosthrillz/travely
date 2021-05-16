@@ -1,15 +1,29 @@
 @import "variables";
 @import "mixins";
 
+/* Media queries 
+@media screen and (min-width: 320px) and (max-width: 539px)
+
+@media screen and (min-width: 540px) and (max-width: 899px)
+
+@media screen and (min-width: 900px)
+*/
+
 .subtitle {
     font-size: 1.5em;
     text-align: center;
+    color: $secondary-dark;
+    @media screen and (min-width: 601px) {
+        font-size: 2em;
+    }
 }
 
 section {
     * {
-        border: 1px solid rgba(255,0,0,0.5);
         margin: 5px;
+        @media screen and (min-width: 601px) {
+            margin: 10px;
+        }
     }
     & > div {
         width: 100%;
@@ -17,106 +31,127 @@ section {
 
     * > input[type=text] {
         min-height: 30px;
+        @media screen and (min-width: 601px) {
+            min-height: 40px;
+        }
     }
 
     width: 80%;
+    max-width: 800px;
+
     margin: 10px 0;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: $bkg-darkest 0 0 10px 10px;
-    background: $bkg-dark;
+    /*box-shadow: $main-light 0 0 10px 10px;*/
+    background: $main-light;
 
     display: flex;
     flex-direction: column;
     justify-items: center;
     align-items: center;
 
-    @media screen and (min-width: 321px) and (max-width: 600px) {
-
-    }
-
-    @media screen and (min-width: 601px) {
-        width: 50%;
-    }
-
 
     .hero-container {
         width: 100%;
+        
 
         .hero-img {
+            margin: 0;
             height: auto;
             width: 100%;
-            max-width: calc(100% - 10px);
+            max-width: 100%;
         }
     }
 
     .trip-head-container {
-        background: $bkg-darkest;
+        background: $main-lightest;
         @include centerFlex;
         flex-direction: column;
         h1 {
             font-size: 2em;
+            font-weight: bold;
+            @media screen and (min-width: 601px) {
+                font-size: 2.5em;
+            }
         }
         h2 {
             font-size: 1em;
+            @media screen and (min-width: 601px) {
+                font-size: 1.5em;
+            }
         }
         h3 {
             font-size: 0.9em;
             margin-top: 10px;
             font-style: italic;
+            @media screen and (min-width: 601px) {
+                font-size: 1.3em;
+            }
         }
     }
 
     .weather-container {
-        background: $bkg-darkest;
+        background: $main-lightest;
         @include centerFlex;
         flex-direction: column;
 
         .weather-img {
             width: 30%;
-
-            @media screen and (min-width: 601px) {
-                width: 10%;
-            }
+            max-width: 100px;
         }
 
         .weather-status {
             font-style: italic;
+            text-align: center;
+            font-size: 0.9em;
+            @media screen and (min-width: 601px) {
+                font-size: 1.5em;
+            }
         }
 
         .weather-temp-container {
             @include centerFlex;
             width: 80%;
 
-            @media screen and (min-width: 601px) {
-                width: 40%;
+            .weather-temp {
+                font-size: 1.3em;
+                font-weight: bold;
+                color: $accent-red;
+                @media screen and (min-width: 601px) {
+                    font-size: 1.5em;
+                }
             }
 
             .weather-temp-high {
                 @include centerFlex;
                 width: 50%;
-                justify-content: flex-start;
-                color: green;
+                justify-content: flex-end;
+                margin-right: 10px;
+                @media screen and (min-width: 601px) {
+                    font-size: 1.3em;
+                }
             }
 
             .weather-temp-low {
                 @include centerFlex;
                 width: 50%;
-                justify-content: flex-end;
-                color: cyan;
+                justify-content: flex-start;
+                margin-left: 10px;
+                @media screen and (min-width: 601px) {
+                    font-size: 1.3em;
+                }
+                .weather-temp {
+                    color: $secondary-mid;
+                }
             }
 
-            .weather-temp {
-                font-size: 1.3em;
-                font-weight: bold;
-                color: $text-light;
-            }
+            
         }
     } 
 }
 
 .flights-container {
-    background: $bkg-darkest;
+    background: $main-lightest;
 }
 
 #flights {
@@ -128,12 +163,14 @@ section {
     * { margin: 0; padding: 0; }
 
     width: 100%;
+    max-width: 500px;
+
     display: grid;
     grid-template-columns: 30px repeat(2, minmax(10px, 1fr)) 30px;
     grid-template-rows:
     [date]      30px
-    [airTime]   30px
-    ;
+    [air]       30px
+    [time]      30px;
     grid-template-areas:
     "dateL  dateL   dateR   dateR"
     "imgL   airL    airR    imgR"
@@ -141,10 +178,18 @@ section {
     ;
     grid-gap: 5px;
 
-    @media screen and (min-width: 601px) {
-        width: 50%;
+    input {
+        @include inputs;
     }
 
+    @media screen and (min-width: 601px) {
+        grid-gap: 10px;
+        grid-template-columns: 40px repeat(2, minmax(10px, 1fr)) 40px;
+        grid-template-rows:
+        [date]      40px
+        [air]       40px
+        [time]      40px;
+    }
 }
 
 // departure flights
@@ -201,22 +246,27 @@ section {
 
 
 .restaurants-container, .hotels-container {
-    background: $bkg-darkest;
+    background: $main-lightest;
     @include centerFlex;
     flex-direction: column;
+
+    input {
+        @include inputs;
+    }
 }
 
 #restaurants, #hotels {
     @include centerFlex;
     flex-direction: column;
     width: 100%;
+    max-width: 500px;
 
     * {
-        width: 100%;
+        width: 95%;
+    }
 
-        @media screen and (min-width: 601px) {
-            width: 50%;
-        }
+    @media screen and (min-width: 601px) {
+        flex-direction: row;
     }
 }
 
@@ -225,22 +275,37 @@ section {
 }
 
 #restaurants-list, #hotels-list {
-    background: $bkg-dark;
+    background: $main-light;
     @include centerFlex;
     flex-direction: column;
-    width: 100%;
+    width: 95%;
+    max-width: 500px;
 
     li {
         width: 100%;
-        @media screen and (min-width: 601px) {
-            width: 50%;
-        }
 
         p:nth-child(1) {
-            font-size: 0.8em;
+            font-size: 0.9em;
+            @media screen and (min-width: 601px) {
+                font-size: 1.3em;
+            }
+
         }
         p:nth-child(2) {
-            font-size: 0.6em;
+            font-size: 0.8em;
+            @media screen and (min-width: 601px) {
+                font-size: 1.2em;
+            }
         }
+    }
+}
+
+.no-items {
+    text-align: center;
+    font-style: italic;
+    color: $secondary-light;
+    font-size: 0.8em;
+    @media screen and (min-width: 601px) {
+        font-size: 1em;
     }
 }
