@@ -13,6 +13,7 @@ export async function getPhoto(location) {
   }
 }
 
+// get api key from server environment
 const getPixaAPI = async () => {
   const res = await fetch("http://localhost:8081/pixabay");
   try {

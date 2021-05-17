@@ -1,3 +1,4 @@
+// create list of restaurants
 export function createRestaurants(restaurants, restaurantsList) {
   restaurantsList.innerHTML = "";
   for (let restaurant of restaurants) {
@@ -12,6 +13,7 @@ export function createRestaurants(restaurants, restaurantsList) {
   }
 }
 
+// create list of hotels
 export function createHotels(hotels, hotelsList) {
   hotelsList.innerHTML = "";
   for (let hotel of hotels) {

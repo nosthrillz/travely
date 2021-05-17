@@ -1,6 +1,7 @@
 export async function getWeather(data) {
   const api_key = await getWeatherAPI();
 
+  // fetch weather data from weatherbit
   const res = await fetch(
     `https://api.weatherbit.io/v2.0/forecast/daily?&city=${data.location}&key=${api_key}`
   );
@@ -26,6 +27,7 @@ export async function getWeather(data) {
   }
 }
 
+// fetch api key from server environment
 const getWeatherAPI = async () => {
   const res = await fetch("http://localhost:8081/weather");
   try {

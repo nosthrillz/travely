@@ -1,5 +1,9 @@
 import { createRestaurants, createHotels } from "./CRUDRestHotels";
 
+/* create event listener for the "btn" button
+   that updates the trip with the id of "id"
+   for the "type" data type (corresponding object key)
+*/
 export function listen(type, btn, id) {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -47,6 +51,7 @@ export function listen(type, btn, id) {
 
         const url = `http://localhost:8081/trips/${id}/flights`;
 
+        // Save flight "data" for trip with id "id"
         postData(url, data).then(alert("Updated!"));
         break;
       }
@@ -56,8 +61,8 @@ export function listen(type, btn, id) {
           .querySelector("#restaurants");
 
         const restName = restaurantsElem.querySelector("#rest-name").value;
-        const restAddress = restaurantsElem.querySelector("#rest-address")
-          .value;
+        const restAddress =
+          restaurantsElem.querySelector("#rest-address").value;
 
         let data = {};
 
@@ -68,13 +73,17 @@ export function listen(type, btn, id) {
 
         const url = `http://localhost:8081/trips/${id}/restaurants`;
 
+        /* Save restaurant "data" for trip with id "id",
+         but also clear "restaurants" list. 
+         innerHTML reset is safe because there are no listeners on it
+        */
         postData(url, data)
           .then((trips) => {
             const restaurantsList = document
               .querySelector(`#section-${id}`)
               .querySelector("#restaurants-list");
 
-            restaurantsList.innerHTML = ""; // safe remove because no listeners
+            restaurantsList.innerHTML = "";
 
             createRestaurants(trips[id].restaurants, restaurantsList);
           })
@@ -102,6 +111,10 @@ export function listen(type, btn, id) {
 
         const url = `http://localhost:8081/trips/${id}/hotels`;
 
+        /* Save hotel "data" for trip with id "id",
+         but also clear "hotels" list. 
+         innerHTML reset is safe because there are no listeners on it
+        */
         postData(url, data)
           .then((trips) => {
             const hotelsList = document
@@ -123,6 +136,7 @@ export function listen(type, btn, id) {
   });
 }
 
+// post request on set URL with user-generated input into "data" object
 const postData = async (url, data) => {
   const response = await fetch(url, {
     method: "POST",

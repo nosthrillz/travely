@@ -12,7 +12,7 @@
     </header>
 
     <form id="addTrip">
-      <input id="where" type="text" placeholder="Where to?" />
+      <input id="where" type="text" placeholder="What city?" />
       <input id="date" type="text" placeholder="DD/MM/YYYY" />
       <input id="add" type="submit" value="Add trip" />
     </form>
@@ -32,4 +32,11 @@
       </p>
     </footer>
   </body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+    </script>
 </html>

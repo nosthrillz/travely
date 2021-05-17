@@ -1,6 +1,7 @@
 import { getTrips } from "./getTrips";
 import { createTrips } from "./createTrips";
 
+// POST with saved placeData for trips object, so we can update it from the response
 export const addPlace = async (placeData, trips) => {
   const requestOptions = {
     method: "POST",
@@ -13,7 +14,7 @@ export const addPlace = async (placeData, trips) => {
     const info = await response.json();
     trips = await getTrips();
 
-    // Update UI
+    // Update UI: clear all, then recreate based on response trips object
     document.querySelector("main").innerHTML = "";
     createTrips(trips);
   } catch (error) {

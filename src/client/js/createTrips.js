@@ -7,16 +7,19 @@ import flight_land from "../images/flight_land.png";
 export function createTrips(trips) {
   const main = document.querySelector("main");
 
+  // If no trips -> display no-trips content
   if (trips.length == 0) {
     const noTrips = document.createElement("h3");
     noTrips.className = "no-trips";
     noTrips.innerText = "Start by adding a trip...";
     main.appendChild(noTrips);
   } else {
+    // since there are trips, display the removal button
     document.querySelector(".remove-trips").style.display = "flex";
 
     main.innerHTML = "";
 
+    // for each fetched trip, create the trip card
     for (let i = 0; i < trips.length; i++) {
       const section = document.createElement("section");
       section.id = `section-${i}`;
@@ -285,7 +288,7 @@ export function createTrips(trips) {
       saveFlight.type = "submit";
       saveFlight.innerText = "Save";
       flightsForm.appendChild(saveFlight);
-      listen("flight", saveFlight, i);
+      listen("flight", saveFlight, i); // add event listener to save flight-type form data
 
       // Restaurants
       const restaurantsContainer = document.createElement("div");
@@ -318,7 +321,7 @@ export function createTrips(trips) {
       saveRestaurant.type = "submit";
       saveRestaurant.innerText = "Add";
       restaurantsForm.appendChild(saveRestaurant);
-      listen("restaurant", saveRestaurant, i);
+      listen("restaurant", saveRestaurant, i); // add event listener to save restaurant-type form data
 
       const restaurantsList = document.createElement("ul");
       restaurantsList.id = "restaurants-list";
@@ -328,7 +331,7 @@ export function createTrips(trips) {
         restaurants404.innerText = "No restaurants yet. Start adding...";
         restaurants404.className = "no-items";
         restaurantsList.appendChild(restaurants404);
-      } else createRestaurants(trips[i].restaurants, restaurantsList);
+      } else createRestaurants(trips[i].restaurants, restaurantsList); // create restaurants list if it exists
 
       // Hotels
       const hotelsContainer = document.createElement("div");
@@ -361,7 +364,7 @@ export function createTrips(trips) {
       saveHotel.type = "submit";
       saveHotel.innerText = "Add";
       hotelsForm.appendChild(saveHotel);
-      listen("hotel", saveHotel, i);
+      listen("hotel", saveHotel, i); // add event listener to save hotel-type form data
 
       const hotelsList = document.createElement("ul");
       hotelsList.id = "hotels-list";
@@ -372,7 +375,7 @@ export function createTrips(trips) {
         hotels404.innerText = "No hotels yet. Start adding...";
         hotels404.className = "no-items";
         hotelsList.appendChild(hotels404);
-      } else createHotels(trips[i].hotels, hotelsList);
+      } else createHotels(trips[i].hotels, hotelsList); // create hotels list if it exists
     }
   }
 }

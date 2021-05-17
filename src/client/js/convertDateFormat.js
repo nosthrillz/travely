@@ -1,3 +1,4 @@
+// Converts user input in String format DD/MM/YYYY to a Date format
 export const convertDate = (date) => {
   const parts = date.split("/");
 

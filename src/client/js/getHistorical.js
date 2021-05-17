@@ -1,12 +1,11 @@
 export async function getHistorical(data) {
   const api_key = await getHistoricalWeatherAPI();
-
   const weatherStation = await getNearbyStation(data, api_key);
   const avgTemp = await getAverages(data, api_key, weatherStation);
-
   return avgTemp;
 }
 
+// fetch api key from server environment
 const getHistoricalWeatherAPI = async () => {
   const res = await fetch("http://localhost:8081/historical");
   try {
@@ -17,6 +16,7 @@ const getHistoricalWeatherAPI = async () => {
   }
 };
 
+// get the nearest weather station from the trip location
 const getNearbyStation = async (data, key) => {
   const res = await fetch(
     `https://api.meteostat.net/v2/stations/search?query=${data.location}&limit=1`,
@@ -30,6 +30,7 @@ const getNearbyStation = async (data, key) => {
   }
 };
 
+// get the average temperature for the date of the trip, based on the fetched weather station
 const getAverages = async (data, key, station) => {
   const res = await fetch(
     `https://api.meteostat.net/v2/stations/climate?station=${station}`,
